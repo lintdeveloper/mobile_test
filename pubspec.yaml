@@ -1,0 +1,49 @@
+name: mobile_test
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  logging: ^1.0.2
+  google_fonts: ^2.2.0
+  provider: ^6.0.2
+  another_flushbar: ^1.10.5
+  intl: ^0.17.0
+  flutter_screenutil: ^5.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: GiraSans
+      fonts:
+        - asset: assets/fonts/gira-sans/GiraSans-Regular.otf
+        - asset: assets/fonts/gira-sans/GiraSans-Italic.otf
+          style: italic
+        - asset: assets/fonts/gira-sans/GiraSans-Bold.otf
+          weight: 700
+        - asset: assets/fonts/gira-sans/GiraSans-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/gira-sans/GiraSans-Medium.otf
+          weight: 500
+        - asset: assets/fonts/gira-sans/GiraSans-MediumItalic.otf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/gira-sans/GiraSans-Book.otf
+          weight: 400
+        - asset: assets/fonts/gira-sans/GiraSans-BookItalic.otf
+          weight: 400
+          style: italic
