@@ -38,7 +38,7 @@ class _AppState extends State<App> {
           },
         ),
       ),
-      home: LandingScreen(),
+      home: DashboardScreen(),
       routes: AppRoutes.defaultRoutes,
     );
   }
