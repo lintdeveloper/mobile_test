@@ -25,6 +25,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         return false;
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -40,7 +41,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: _buildNavMenu(_size),
+          floatingActionButton: Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+              child: _buildNavMenu(_size)),
         ),
       ),
       )

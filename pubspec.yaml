@@ -19,6 +19,8 @@ dependencies:
   intl: ^0.17.0
   flutter_screenutil: ^5.3.1
   flutter_floating_bottom_bar: ^1.0.0+1
+  flutter_secure_storage: ^3.3.5
+  equatable: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +28,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
 
   fonts:
     - family: GiraSans
