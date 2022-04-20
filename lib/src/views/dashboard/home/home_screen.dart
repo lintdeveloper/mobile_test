@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_test/shared/shared.dart';
+import 'package:mobile_test/src/views/dashboard/home/trending_view.dart';
 import 'package:mobile_test/utils/colors.dart';
 import 'package:mobile_test/utils/text_style.dart';
 
@@ -140,11 +141,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             SliverToBoxAdapter(
               child: Container(
                 color: AppColors.secondaryColor,
-                height: _size.height * 0.8,
+                height: _size.height * 0.58,
+                margin: EdgeInsets.only(top: _size.height * 0.04),
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    Center(child: Text("Hi")),
+                    TrendingView(),
                     Center(child: Text("HIiid")),
                     Center(child: Text("HI"))
                   ],
