@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_test/src/core/models/models.dart';
+import 'package:mobile_test/src/view_models/store_view_model/store_view_model.dart';
 import 'package:mobile_test/utils/colors.dart';
 import 'package:mobile_test/utils/images.dart';
 import 'package:mobile_test/utils/text_style.dart';
+import 'package:provider/provider.dart';
 
 class TrendingView extends StatelessWidget {
   const TrendingView({Key? key}) : super(key: key);
@@ -14,15 +17,25 @@ class TrendingView extends StatelessWidget {
 
     return  Container(
         margin: EdgeInsets.only( left: _size.width * 0.14 ),
-        child: ListView.builder(scrollDirection: Axis.horizontal,
-            itemCount: 3, itemBuilder: (context, index) {
-              return _productCardItem(_size);
-
-        }));
+        child: StreamProvider<List<Product>?>(
+          initialData: [],
+          updateShouldNotify: (List<Product>? last, List<Product>? next) => last?.length == next?.length,
+          catchError: (BuildContext context, error) => <Product>[],
+          create: (_) => Provider.of<StoreViewModel>(context).getAllTrendingForSale,
+          builder: (context, child) {
+              final products = context.watch<List<Product>>();
+              return ListView.builder(scrollDirection: Axis.horizontal,
+                  itemCount: products.length, itemBuilder: (context, index) {
+                    final _product = products[index];
+                    return _productCardItem(_size, product: _product);
+              });
+          },
+        )
+    );
   }
 }
 
-Widget _productCardItem(Size size) {
+Widget _productCardItem(Size size, {required Product product}) {
   final _size = size;
   return Container(
     margin: EdgeInsets.only(right: _size.width * 0.08),
@@ -32,7 +45,7 @@ Widget _productCardItem(Size size) {
           borderRadius: BorderRadius.circular(18), // Image border
           child: SizedBox.fromSize(
             size: Size.fromWidth(_size.width * 0.65), // Image radius
-            child: Image.asset(AppImages.decorThree, fit: BoxFit.fill),
+            child: Image.asset("${product.mainImage}", fit: BoxFit.fill),
           ),
         ),
         Positioned(
@@ -47,9 +60,9 @@ Widget _productCardItem(Size size) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Noom", style: AppTextStyle.textSize16.copyWith(color: AppColors.iceGrey2.withOpacity(0.9),
+                    Text("${product.name}", style: AppTextStyle.textSize16.copyWith(color: AppColors.iceGrey2.withOpacity(0.9),
                         fontWeight: FontWeight.bold)),
-                    Text("Candle Holders", style: AppTextStyle.textSize16.copyWith(color: AppColors.iceGrey2.withOpacity(0.9),
+                    Text("${product.subName}", style: AppTextStyle.textSize16.copyWith(color: AppColors.iceGrey2.withOpacity(0.9),
                         fontWeight: FontWeight.bold))
                   ],
                 ),
