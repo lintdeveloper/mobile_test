@@ -34,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.redColor,
       body:  ResponsiveSafeArea(builder: (context, _size) {
         return CustomScrollView(
           slivers: [

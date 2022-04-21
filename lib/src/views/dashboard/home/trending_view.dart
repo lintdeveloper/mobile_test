@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_test/src/core/models/models.dart';
 import 'package:mobile_test/src/view_models/store_view_model/store_view_model.dart';
+import 'package:mobile_test/src/views/product/product.dart';
 import 'package:mobile_test/utils/colors.dart';
 import 'package:mobile_test/utils/images.dart';
 import 'package:mobile_test/utils/text_style.dart';
@@ -27,7 +28,8 @@ class TrendingView extends StatelessWidget {
               return ListView.builder(scrollDirection: Axis.horizontal,
                   itemCount: products.length, itemBuilder: (context, index) {
                     final _product = products[index];
-                    return _productCardItem(_size, product: _product);
+                    return InkWell(onTap: () => Navigator.pushNamed(context, ProductDetailScreen.routeName),
+                        child: _productCardItem(_size, product: _product));
               });
           },
         )
@@ -50,7 +52,6 @@ Widget _productCardItem(Size size, {required Product product}) {
         ),
         Positioned(
           bottom: 6,
-
           child: Container(
             width: _size.width * 0.65,
             padding: EdgeInsets.symmetric(horizontal: _size.width * 0.04, vertical: _size.height * 0.015),
