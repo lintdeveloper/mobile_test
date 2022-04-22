@@ -74,15 +74,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               child: TextField(
                                 cursorColor: AppColors.darkBlackColor,
                                 textInputAction: TextInputAction.done,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: AppColors.secondaryColor),
+                                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14,
+                                    color: AppColors.darkBlackColor),
                                 decoration: InputDecoration(border: InputBorder.none,
                                   hintText: 'Search', prefixIcon:  Icon(Icons.search),
                                   hintStyle:TextStyle(fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      color: AppColors.blackColor),
+                                      fontSize: 14, color: AppColors.blackColor)
                                 ),
                               )
                           ),

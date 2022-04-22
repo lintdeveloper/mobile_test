@@ -34,8 +34,12 @@ class _ChairsViewState extends State<ChairsView> {
         child: ListView.builder(scrollDirection: Axis.horizontal,
             itemCount: _products.length, itemBuilder: (context, index) {
               final _product = _products[index];
-              return InkWell(onTap: () => Navigator.pushNamed(context, ProductDetailScreen.routeName),
-                  child: ProductCardItem(_size, product: _product));
+              return InkWell(onTap: () {
+                FocusManager.instance.primaryFocus?.unfocus();
+                Navigator.pushNamed(context, ProductDetailScreen.routeName,
+                    arguments: _product
+                );
+              }, child: ProductCardItem(_size, product: _product));
             })
     );
   }

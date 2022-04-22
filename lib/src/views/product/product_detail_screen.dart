@@ -64,7 +64,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             borderRadius: BorderRadius.circular(18),
                             child: SizedBox.fromSize(
                               size: Size.fromWidth(_size.width * 0.65),
-                              child: Image.asset(AppImages.decorThree,
+                              child: Image.asset(_productData.images[index],
                                   fit: BoxFit.fill),
                             ),
                           ),
