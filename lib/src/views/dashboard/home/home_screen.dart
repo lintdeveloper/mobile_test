@@ -123,20 +123,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   indicatorSize: TabBarIndicatorSize.label,
                   tabs: _tabs
                 ),
-                // flexibleSpace: FlexibleSpaceBar(
-                //   background: Container(
-                //           child: TabBar(
-                //             indicatorColor: Colors.transparent,
-                //             unselectedLabelColor: AppColors.iceGrey,
-                //             labelColor: AppColors.primaryColor,
-                //             tabs: [
-                //               Tab(icon: Icon(Icons.home_outlined, size: 26)),
-                //               Tab(icon: Icon(Icons.favorite_outline_sharp, size: 26)),
-                //               Tab(icon: Icon(Icons.shopping_cart_outlined, size: 26))
-                //             ],
-                //           ),
-                //         )
-                // ),
               ),
             ),
             SliverToBoxAdapter(
