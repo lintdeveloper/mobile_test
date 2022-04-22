@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_test/shared/shared.dart';
+import 'package:mobile_test/src/views/dashboard/home/chairs_view.dart';
+import 'package:mobile_test/src/views/dashboard/home/decor_view.dart';
 import 'package:mobile_test/src/views/dashboard/home/trending_view.dart';
 import 'package:mobile_test/utils/colors.dart';
 import 'package:mobile_test/utils/text_style.dart';
@@ -146,51 +148,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   controller: _tabController,
                   children: [
                     TrendingView(),
-                    Center(child: Text("HIiid")),
-                    Center(child: Text("HI"))
+                    DecorView(),
+                    ChairsView()
                   ],
                 ),
               ),
             )
           ],
         );
-        // return SingleChildScrollView(
-        //   child: Column(
-        //     children: [
-        //       CustomScrollView(
-        //         slivers: [
-        //           SliverAppBar(
-        //             expandedHeight: 200,
-        //             flexibleSpace: FlexibleSpaceBar(
-        //               background: Container(color: Colors.green),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //       // Container(
-        //       //   child: TabBar(
-        //       //     indicatorColor: Colors.transparent,
-        //       //     unselectedLabelColor: AppColors.iceGrey,
-        //       //     labelColor: AppColors.primaryColor,
-        //       //     tabs: [
-        //       //       Tab(icon: Icon(Icons.home_outlined, size: 26)),
-        //       //       Tab(icon: Icon(Icons.favorite_outline_sharp, size: 26)),
-        //       //       Tab(icon: Icon(Icons.shopping_cart_outlined, size: 26))
-        //       //     ],
-        //       //   ),,
-        //       // )
-        //       // DefaultTabController(length: 3, child: Scaffold(
-        //       //   body: TabBarView(
-        //       //     children: [
-        //       //       Center(child: Text("Hi")),
-        //       //       Text("HI"),
-        //       //       Text("HI")
-        //       //     ],
-        //       //   ),
-        //       // ))
-        //     ],
-        //   ),
-        // );
       })
     );
   }

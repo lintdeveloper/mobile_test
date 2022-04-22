@@ -9,20 +9,20 @@ import 'package:mobile_test/utils/colors.dart';
 import 'package:mobile_test/utils/text_style.dart';
 import 'package:provider/provider.dart';
 
-class TrendingView extends StatefulWidget {
-  const TrendingView({Key? key}) : super(key: key);
+class DecorView extends StatefulWidget {
+  const DecorView({Key? key}) : super(key: key);
 
   @override
-  State<TrendingView> createState() => _TrendingViewState();
+  State<DecorView> createState() => _DecorViewState();
 }
 
-class _TrendingViewState extends State<TrendingView> {
+class _DecorViewState extends State<DecorView> {
 
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     final _products = context.watch<List<Product>>().where((product) =>
-    product.category == ProductCategory.trending).toList();
+    product.category == ProductCategory.decor).toList();
 
     return  Container(margin: EdgeInsets.only( left: _size.width * 0.14 ),
         child: ListView.builder(scrollDirection: Axis.horizontal,
@@ -33,4 +33,5 @@ class _TrendingViewState extends State<TrendingView> {
             })
     );
   }
+
 }

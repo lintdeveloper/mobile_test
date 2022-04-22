@@ -1,9 +1,12 @@
 // import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_test/src/core/models/models.dart';
+import 'package:mobile_test/src/view_models/store_view_model/store_view_model.dart';
 import 'package:mobile_test/src/views/dashboard/cart/cart_screen.dart';
 import 'package:mobile_test/src/views/dashboard/favorites/favorites_screen.dart';
 import 'package:mobile_test/src/views/dashboard/home/home_screen.dart';
 import 'package:mobile_test/utils/colors.dart';
+import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const routeName = "/dashboard_screen";
@@ -32,13 +35,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
           backgroundColor: AppColors.secondaryColor,
           body: Container(
             margin: EdgeInsets.only(bottom: _size.height * 0.11),
-            child: TabBarView(
-              children: [
-                HomeScreen(),
-                FavoritesScreen(),
-                CartScreen()
-              ],
-            ),
+            child: StreamProvider<List<Product>?>(
+              create: (_) => Provider.of<StoreViewModel>(context).getAllProducts,
+              initialData: [],
+              updateShouldNotify: (List<Product>? last, List<Product>? next) => last?.length == next?.length,
+              catchError: (BuildContext context, error) => <Product>[],
+              child:  TabBarView(
+                  children: [
+                    HomeScreen(),
+                    FavoritesScreen(),
+                    CartScreen()
+                  ],
+                ),
+            )
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: Visibility(

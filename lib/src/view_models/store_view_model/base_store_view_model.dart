@@ -1,3 +1,3 @@
 abstract class IStoreViewModel {
-  void dispose();
+  void disposeTrending();
 }
