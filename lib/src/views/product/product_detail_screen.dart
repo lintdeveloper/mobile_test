@@ -228,10 +228,22 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         fontSize: 17
                       )),
                       SizedBox(width: _size.width * 0.082),
-                      CircleAvatar(
-                        backgroundColor: AppColors.blackColor2,
-                        child: Icon(Icons.add_shopping_cart,
-                            color: AppColors.iceGrey.withOpacity(0.7)),
+                      InkWell(
+                        onTap: (){
+                          context.read<ShopBasketViewModel>().addToCart(_productData);
+                          Flushbar(
+                            backgroundColor: Colors.green,
+                            flushbarPosition: FlushbarPosition.TOP,
+                            title: "Success",
+                            message: "Product Added to cart",
+                            duration: const Duration(seconds: 3),
+                          ).show(context);
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: AppColors.blackColor2,
+                          child: Icon(Icons.add_shopping_cart,
+                              color: AppColors.iceGrey.withOpacity(0.7)),
+                        ),
                       )
                     ],
                   ),
