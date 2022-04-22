@@ -1,6 +1,9 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_test/src/core/models/models.dart';
+import 'package:mobile_test/src/view_models/view_models.dart';
 import 'package:mobile_test/utils/utils.dart';
+import 'package:provider/provider.dart';
 
 class ProductCardItem extends StatelessWidget {
   const ProductCardItem(this.size, {Key? key,
@@ -41,8 +44,16 @@ class ProductCardItem extends StatelessWidget {
                           fontWeight: FontWeight.bold))
                     ],
                   ),
-                  product?.isLike == true ? Icon(Icons.favorite_sharp, color: AppColors.iceGrey2.withOpacity(0.9))
-                      :   Icon(Icons.favorite_outline, color: AppColors.iceGrey2.withOpacity(0.9))
+                  InkWell(onTap: () {
+                    context.read<ShopBasketViewModel>().addToFavorites(product!);
+                    Flushbar(
+                      backgroundColor: Colors.green,
+                      flushbarPosition: FlushbarPosition.TOP,
+                      title: "Success",
+                      message: "Product Added to favorites",
+                      duration: const Duration(seconds: 3),
+                    ).show(context);
+                  }, child: Icon(Icons.favorite_outline, color: AppColors.iceGrey2.withOpacity(0.9)))
                 ],
               ),
             ),

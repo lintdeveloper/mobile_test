@@ -8,6 +8,7 @@ import 'src/view_models/view_models.dart';
 List<SingleChildWidget> getProviders() {
   return [
     ListenableProvider<StoreViewModel>(create: (_) => StoreViewModel()),
-    ChangeNotifierProvider(create: (context) => CacheViewModel()),
+    ChangeNotifierProvider(create: (context) => ShopBasketViewModel()),
+
   ];
 }

@@ -1,9 +1,12 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mobile_test/shared/shared.dart';
 import 'package:mobile_test/src/core/models/models.dart';
+import 'package:mobile_test/src/view_models/view_models.dart';
 import 'package:mobile_test/utils/images.dart';
 import 'package:mobile_test/utils/utils.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   static const routeName = "/product_detail_screen";
@@ -110,7 +113,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   style: AppTextStyle.textSize22),
                             ],
                           ),
-                          Text(_productData.price,
+                          Text("${_productData.price.toString()}",
                               style: AppTextStyle.textSize22)
                         ],
                       ),
@@ -186,10 +189,22 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ],
             ),
             Positioned(bottom: _size.height * 0.072, left: _size.width * 0.12,
-              child: CircleAvatar(radius: 22, backgroundColor: Colors.white,
-              child: Icon(Icons.favorite_outline_sharp,
-                  color: AppColors.blackColor.withOpacity(0.7)),
-            )),
+              child: InkWell(
+                onTap: (){
+                  context.read<ShopBasketViewModel>().addToFavorites(_productData);
+                  Flushbar(
+                    backgroundColor: Colors.green,
+                    flushbarPosition: FlushbarPosition.TOP,
+                    title: "Success",
+                    message: "Product Added to favorites",
+                    duration: const Duration(seconds: 3),
+                  ).show(context);
+                },
+                child: CircleAvatar(radius: 22, backgroundColor: Colors.white,
+                child: Icon(Icons.favorite_outline_sharp,
+                    color: AppColors.blackColor.withOpacity(0.7)),
+            ),
+              )),
             Positioned(
                 bottom: _size.height * 0.05,
                 right: _size.width * 0.05,

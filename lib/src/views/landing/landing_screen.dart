@@ -176,7 +176,7 @@ class _LandingScreenState extends State<LandingScreen>
                             Navigator.pushNamed(context, DashboardScreen.routeName);
                           },
                           child: Image.asset(AppImages.longArrow,
-                          width: _size.width * 0.1))),
+                            width: _size.width * 0.1))),
                   ],
                 ),
               ),
