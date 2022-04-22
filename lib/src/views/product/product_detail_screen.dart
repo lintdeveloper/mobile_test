@@ -71,6 +71,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         );
                       },
                       itemCount: _productData.images.length,
+                      viewportFraction: 0.9,
                     ),
                   ),
                 ),
