@@ -6,4 +6,6 @@ class AppImages {
   static const String decorOne = 'assets/images/decor-1.jpg';
   static const String decorTwo = 'assets/images/decor-2.jpg';
   static const String decorThree = 'assets/images/decor-3.jpg';
+
+  static const String longArrow = 'assets/images/long-arrow.png';
 }

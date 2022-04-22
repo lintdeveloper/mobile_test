@@ -17,4 +17,6 @@ class AppColors {
   static const brownColor = Color(0xffBDB8A8);
   static const primaryColor2 = Color(0xffF3B7AF);
   static const greenColor2 = Color(0xffBFC9BF);
+  static const yellowColor = Color(0xffFFF1C1);
+  static const pinkColor = Color(0xffF1A29A);
 }
