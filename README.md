@@ -19,9 +19,11 @@
 - [x] Cart: show a list of products in the cart (come up with the design yourself)
 
 3. Product Detail Screen
-- [x] Implement the transition from the Home screen.
+    - [x] Implement the transition from the Home screen.
 - [x] Implement the carousel for the product’s images.
 - [x] Allow the user to change the color selected. This should not result in any other change. 
 - [x] Implement the counter.
 - [x] Implement the like feature.
 - [x] Implement the “Add to cart” feature. Show a toast/message when the product has been added.
+
+Tests: []
