@@ -22,7 +22,7 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int _currentIndex = 0;
   final ValueNotifier<ColorSelector> _colorSelector = ValueNotifier<ColorSelector>(ColorSelector.one);
-  // final numberFormat = NumberFormat("#,##0.0", "en_US");
+  int _productCount  = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +111,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(_productData.name,
-                                  style: AppTextStyle.textSize22),
+                              Text(_productData.name, style: AppTextStyle.textSize22.copyWith(
+                                color: AppColors.darkBlackColor
+                              )),
                               SizedBox(height: _size.height * 0.0035),
                               Text(_productData.subName,
-                                  style: AppTextStyle.textSize22),
+                                  style: AppTextStyle.textSize20),
                             ],
                           ),
                           Text("${numberFormat.format(double.parse(_productData.price.toString()))}",
@@ -130,7 +131,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ColorSelectorItem(size: _size, colorSelector: _colorSelector),
-                          ProductCounter(productData: _productData, size: _size)
+                          ProductCounter(increaseTap: (){
+                            if (!(_productCount >= int.parse(_productData.quantity))){
+                              setState(() {
+                                _productCount++;
+                              });
+                            }
+                          }, productData: _productData, size: _size, count: _productCount, decreaseTap: (){
+                            if (_productCount != 1) {
+                              setState(() {
+                                _productCount = _productCount - 1;
+                              });
+                            }
+                          })
                         ],
                       )
                     ],
@@ -180,6 +193,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       SizedBox(width: _size.width * 0.082),
                       InkWell(
                         onTap: (){
+                          _productData.orderQty = _productCount;
                           context.read<ShopBasketViewModel>().addToCart(_productData);
                           Flushbar(
                             backgroundColor: Colors.green,

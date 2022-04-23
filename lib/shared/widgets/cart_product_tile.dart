@@ -9,9 +9,9 @@ import 'package:mobile_test/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class CartProductTile extends StatelessWidget {
-  const CartProductTile({
-    Key? key, required Product product, required Size size
-  }) : _product = product, _size = size,  super(key: key);
+  const CartProductTile({Key? key, required Product product,
+      required Size size}): _product = product,
+        _size = size,  super(key: key);
 
   final Product _product;
   final Size _size;
@@ -62,7 +62,12 @@ class CartProductTile extends StatelessWidget {
                       Text("${numberFormat.format(double.parse(_product.price))}", style: AppTextStyle.textSize16.copyWith(
                           color: AppColors.primaryColor
                       )),
-                      ProductCounter(productData: _product, size: _size)
+                      ProductCounter(productData: _product, size: _size,
+                        count: int.parse(_product.orderQty.toString()), increaseTap: (){
+
+                        }, decreaseTap: (){
+
+                        })
                     ],
                   )
                 ],

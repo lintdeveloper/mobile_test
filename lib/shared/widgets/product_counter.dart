@@ -6,10 +6,13 @@ import 'package:mobile_test/utils/utils.dart';
 
 class ProductCounter extends StatelessWidget {
   const ProductCounter({Key? key, required Product productData,
-    required Size size}) : _productData = productData, _size = size,  super(key: key);
+    required this.increaseTap, required this.decreaseTap, required this.count,
+    required Size size}) : _size = size,  super(key: key);
 
-  final Product _productData;
   final Size _size;
+  final VoidCallback increaseTap;
+  final VoidCallback decreaseTap;
+  final int count;
 
   @override
   Widget build(BuildContext context) {
@@ -25,25 +28,14 @@ class ProductCounter extends StatelessWidget {
             margin: EdgeInsets.only(top: _size.height * 0.0085),
             child: Row(
               children: [
-                SizedBox(width: _size.width * 0.042),
+                SizedBox(width: _size.width * 0.032),
                 GestureDetector(
-                  onTap: (){
-                    if (!(_productData.orderQty! >= int.parse(_productData.quantity)))
-                      _productData.orderQty! + 1;
-                  },
-                  child: Container(
-                    width: _size.width * 0.032,
-                    height: _size.height * 0.004,
-                    margin: EdgeInsets.only(right: _size.width * 0.015),
-                    decoration: BoxDecoration(color: AppColors.darkBlackColor,
-                        borderRadius: BorderRadius.circular(12)
-                    ),
-                  ),
-                ),
-                SizedBox(width: _size.width * 0.006),
+                    onTap: decreaseTap,
+                    child: Icon(Icons.remove, color: AppColors.darkBlackColor, size: 22,)),
+                SizedBox(width: _size.width * 0.005),
                 Container(
                   margin: EdgeInsets.only(top: _size.height * 0.004),
-                  child: Text("${_productData.orderQty}", style: AppTextStyle.textSize16.copyWith(
+                  child: Text("${count}", style: AppTextStyle.textSize16.copyWith(
                       color: AppColors.darkBlackColor
                   )),
                 )
@@ -51,19 +43,17 @@ class ProductCounter extends StatelessWidget {
             ),
           ),
           Positioned(right: 2,
-            child: CircleAvatar(
-              radius: 19,
-              backgroundColor: AppColors.darkBlackColor,
-              child: Icon(Icons.add, color: AppColors.whiteColor),
+            child: GestureDetector(
+              onTap: increaseTap,
+              child: CircleAvatar(
+                radius: 19,
+                backgroundColor: AppColors.darkBlackColor,
+                child: Icon(Icons.add, color: AppColors.whiteColor),
+              ),
             ),
           )
         ],
       ),
     );
-  }
-
-  void _increaseOrder(Product product) {
-    if (!(_productData.orderQty! >= int.parse(_productData.quantity)))
-      _productData.orderQty! + 1;
   }
 }
