@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_test/src/core/models/models.dart';
 import 'package:mobile_test/src/view_models/view_models.dart';
 import 'package:mobile_test/utils/misc.dart';
@@ -16,6 +17,8 @@ class CartProductTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final numberFormat = NumberFormat.currency(decimalDigits: 0, symbol: '\$');
+
     return Container(
       height: 140,
       margin: EdgeInsets.only(left: _size.width * 0.08, top: _size.height * 0.02),
@@ -45,7 +48,7 @@ class CartProductTile extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("${getCurrency("USD")}${_product.price}", style: AppTextStyle.textSize16.copyWith(
+                      Text("${numberFormat.format(double.parse(_product.price))}", style: AppTextStyle.textSize16.copyWith(
                           color: AppColors.primaryColor
                       )),
                       InkWell(onTap: () => context.read<ShopBasketViewModel>().removeFromFavorite(_product),

@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_test/shared/shared.dart';
 import 'package:mobile_test/src/core/core.dart';
 import 'package:mobile_test/src/core/models/models.dart';
@@ -21,10 +22,12 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int _currentIndex = 0;
   final ValueNotifier<ColorSelector> _colorSelector = ValueNotifier<ColorSelector>(ColorSelector.one);
+  // final numberFormat = NumberFormat("#,##0.0", "en_US");
 
   @override
   Widget build(BuildContext context) {
     final _productData = ModalRoute.of(context)!.settings.arguments as Product;
+    final numberFormat = NumberFormat.currency(decimalDigits: 0, symbol: '\$');
 
     return Scaffold(body: ResponsiveSafeArea(
       builder: (context, _size) {
@@ -115,7 +118,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   style: AppTextStyle.textSize22),
                             ],
                           ),
-                          Text("${_productData.price.toString()}",
+                          Text("${numberFormat.format(double.parse(_productData.price.toString()))}",
                               style: AppTextStyle.textSize22)
                         ],
                       ),
@@ -127,47 +130,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ColorSelectorItem(size: _size, colorSelector: _colorSelector),
-                          Container(
-                            width: _size.width * 0.25,
-                            height: 40,
-                            decoration: BoxDecoration(color: Color(0xffF2E0DB),
-                              borderRadius: BorderRadius.circular(18)
-                            ),
-                            child: Stack(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(top: _size.height * 0.0085),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: _size.width * 0.042),
-                                      Container(
-                                        width: _size.width * 0.032,
-                                        height: _size.height * 0.004,
-                                        margin: EdgeInsets.only(right: _size.width * 0.015),
-                                        decoration: BoxDecoration(color: AppColors.darkBlackColor,
-                                          borderRadius: BorderRadius.circular(12)
-                                        ),
-                                      ),
-                                      SizedBox(width: _size.width * 0.006),
-                                      Container(
-                                        margin: EdgeInsets.only(top: _size.height * 0.004),
-                                        child: Text(_productData.quantity, style: AppTextStyle.textSize16.copyWith(
-                                          color: AppColors.darkBlackColor
-                                        )),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Positioned(right: 2,
-                                  child: CircleAvatar(
-                                    radius: 19,
-                                    backgroundColor: AppColors.darkBlackColor,
-                                    child: Icon(Icons.add, color: AppColors.whiteColor),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
+                          ProductCounter(productData: _productData, size: _size)
                         ],
                       )
                     ],
@@ -240,6 +203,70 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         );
       },
     ));
+  }
+}
+
+class ProductCounter extends StatelessWidget {
+  const ProductCounter({Key? key, required Product productData,
+    required Size size}) : _productData = productData, _size = size,  super(key: key);
+
+  final Product _productData;
+  final Size _size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: _size.width * 0.25,
+      height: 40,
+      decoration: BoxDecoration(color: Color(0xffF2E0DB),
+        borderRadius: BorderRadius.circular(18)
+      ),
+      child: Stack(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: _size.height * 0.0085),
+            child: Row(
+              children: [
+                SizedBox(width: _size.width * 0.042),
+                GestureDetector(
+                  onTap: (){
+                    if (!(_productData.orderQty! >= int.parse(_productData.quantity)))
+                      _productData.orderQty! + 1;
+                  },
+                  child: Container(
+                    width: _size.width * 0.032,
+                    height: _size.height * 0.004,
+                    margin: EdgeInsets.only(right: _size.width * 0.015),
+                    decoration: BoxDecoration(color: AppColors.darkBlackColor,
+                      borderRadius: BorderRadius.circular(12)
+                    ),
+                  ),
+                ),
+                SizedBox(width: _size.width * 0.006),
+                Container(
+                  margin: EdgeInsets.only(top: _size.height * 0.004),
+                  child: Text("${_productData.orderQty}", style: AppTextStyle.textSize16.copyWith(
+                    color: AppColors.darkBlackColor
+                  )),
+                )
+              ],
+            ),
+          ),
+          Positioned(right: 2,
+            child: CircleAvatar(
+              radius: 19,
+              backgroundColor: AppColors.darkBlackColor,
+              child: Icon(Icons.add, color: AppColors.whiteColor),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  void _increaseOrder(Product product) {
+    if (!(_productData.orderQty! >= int.parse(_productData.quantity)))
+      _productData.orderQty! + 1;
   }
 }
 
