@@ -34,9 +34,10 @@ class CartProductTile extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+              padding: EdgeInsets.symmetric(vertical:  _size.height * 0.010, horizontal: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,10 +52,10 @@ class CartProductTile extends StatelessWidget {
                   ),
                   Text("${_product.subName}", style: AppTextStyle.textSize14.copyWith(
                       color: AppColors.blackColor2.withOpacity(0.4))),
-                  SizedBox(height: 6),
+                  SizedBox(height: _size.height * 0.01),
                   Text("${_product.description}", maxLines: 2,
                       overflow: TextOverflow.ellipsis, style: AppTextStyle.textSize12),
-                  SizedBox(height: 10),
+                  SizedBox(height: _size.height * 0.014),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
