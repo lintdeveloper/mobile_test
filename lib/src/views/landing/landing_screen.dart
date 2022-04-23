@@ -113,7 +113,7 @@ class _LandingScreenState extends State<LandingScreen>
               ),
               AnimatedOpacity(
                 opacity: _opacity,
-                duration: Duration(seconds: 1),
+                duration: Duration.zero,
                 child: SlideTransition(
                   position: _circleOffsetAnimation,
                   child: Container(
@@ -170,7 +170,7 @@ class _LandingScreenState extends State<LandingScreen>
                               _isVisible = true;
                               _opacity = _opacity == 0 ? 1.0 : 0.0;
                             });
-                            await Future.delayed(Duration(seconds: 2)).then((_) {
+                            await Future.delayed(Duration(milliseconds: 1300)).then((_) {
                               _key = UniqueKey();
                             });
                             Navigator.pushNamed(context, DashboardScreen.routeName);

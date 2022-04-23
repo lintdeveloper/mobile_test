@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_test/shared/shared.dart';
 import 'package:mobile_test/src/core/models/models.dart';
 import 'package:mobile_test/src/view_models/view_models.dart';
 import 'package:mobile_test/utils/misc.dart';
@@ -20,7 +21,7 @@ class CartProductTile extends StatelessWidget {
     final numberFormat = NumberFormat.currency(decimalDigits: 0, symbol: '\$');
 
     return Container(
-      height: 140,
+      height: 180,
       margin: EdgeInsets.only(left: _size.width * 0.08, top: _size.height * 0.02),
       child: Row(
         children: [
@@ -37,8 +38,18 @@ class CartProductTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("${_product.name}", style: AppTextStyle.textSize20.copyWith(
-                      color: AppColors.darkBlackColor.withOpacity(0.9))),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("${_product.name}", style: AppTextStyle.textSize20.copyWith(
+                          color: AppColors.darkBlackColor.withOpacity(0.9))),
+                      IconButton(icon: Icon(Icons.close), color: AppColors.primaryColor,
+                          onPressed: () {
+                        print("HI");
+                            context.read<ShopBasketViewModel>().removeFromCart(_product);
+                          })
+                    ],
+                  ),
                   Text("${_product.subName}", style: AppTextStyle.textSize14.copyWith(
                       color: AppColors.blackColor2.withOpacity(0.4))),
                   SizedBox(height: 6),
@@ -51,8 +62,7 @@ class CartProductTile extends StatelessWidget {
                       Text("${numberFormat.format(double.parse(_product.price))}", style: AppTextStyle.textSize16.copyWith(
                           color: AppColors.primaryColor
                       )),
-                      InkWell(onTap: () => context.read<ShopBasketViewModel>().removeFromFavorite(_product),
-                          child: Icon(Icons.delete_outline_sharp, color: AppColors.primaryColor))
+                      ProductCounter(productData: _product, size: _size)
                     ],
                   )
                 ],

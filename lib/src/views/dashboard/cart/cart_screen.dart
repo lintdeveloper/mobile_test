@@ -38,7 +38,7 @@ class _CartScreenState extends State<CartScreen> {
                                 color: AppColors.primaryColor),
                             itemBuilder: (BuildContext context, int index) {
                               final _product = _products[index];
-                              return FavoriteProductTile(product: _product, size: _size);
+                              return CartProductTile(product: _product, size: _size);
                             });
                       }),
                 )

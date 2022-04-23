@@ -5,3 +5,4 @@ export 'custom_clip.dart';
 export 'favorite_product_tile.dart';
 export 'cart_product_tile.dart';
 export 'empty_product_view.dart';
+export 'product_counter.dart';
