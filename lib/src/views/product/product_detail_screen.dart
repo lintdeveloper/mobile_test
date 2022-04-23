@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:mobile_test/shared/shared.dart';
+import 'package:mobile_test/src/core/core.dart';
 import 'package:mobile_test/src/core/models/models.dart';
 import 'package:mobile_test/src/view_models/view_models.dart';
 import 'package:mobile_test/utils/images.dart';
@@ -19,6 +20,7 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int _currentIndex = 0;
+  final ValueNotifier<ColorSelector> _colorSelector = ValueNotifier<ColorSelector>(ColorSelector.one);
 
   @override
   Widget build(BuildContext context) {
@@ -124,22 +126,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                                CircleAvatar(radius: 21,
-                                  backgroundColor: AppColors.greenColor.withOpacity(0.4),
-                                  child: CircleAvatar(radius: 16,
-                                      backgroundColor: AppColors.greenColor),
-                                ),
-                                SizedBox(width: _size.width * 0.018),
-                                CircleAvatar(radius: 16,
-                                    backgroundColor: AppColors.brownColor),
-                                SizedBox(width: _size.width * 0.018),
-                                CircleAvatar(radius: 16,
-                                  backgroundColor: AppColors.primaryColor2),
-                            ],
-                          ),
+                          ColorSelectorItem(size: _size, colorSelector: _colorSelector),
                           Container(
                             width: _size.width * 0.25,
                             height: 40,
@@ -253,5 +240,80 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         );
       },
     ));
+  }
+}
+
+class ColorSelectorItem extends StatefulWidget {
+  const ColorSelectorItem({Key? key,
+    required Size size, required ValueNotifier<ColorSelector> colorSelector
+  }): _size = size, _colorSelector = colorSelector, super(key: key);
+
+  final Size _size;
+  final ValueNotifier<ColorSelector> _colorSelector;
+
+  @override
+  State<ColorSelectorItem> createState() => _ColorSelectorItemState();
+}
+
+class _ColorSelectorItemState extends State<ColorSelectorItem> {
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+        valueListenable: widget._colorSelector,
+        builder: (BuildContext context, ColorSelector _colorSelector, Widget? child) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+              GestureDetector(
+                onTap: () => {
+                  widget._colorSelector.value = ColorSelector.one
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    _colorSelector == ColorSelector.one ? CircleAvatar(radius: 21,
+                      backgroundColor: AppColors.greenColor.withOpacity(0.4),
+                    ): Container(),
+                    CircleAvatar(radius: 16,
+                        backgroundColor: AppColors.greenColor)
+                  ],
+                ),
+              ),
+              SizedBox(width: widget._size.width * 0.018),
+              GestureDetector(
+                onTap: (){
+                  widget._colorSelector.value = ColorSelector.two;
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    _colorSelector == ColorSelector.two ? CircleAvatar(radius: 21,
+                      backgroundColor: AppColors.greenColor.withOpacity(0.4),
+                    ): Container(),
+                    CircleAvatar(radius: 16,
+                        backgroundColor: AppColors.brownColor),
+                  ],
+                ),
+              ),
+              SizedBox(width: widget._size.width * 0.018),
+              GestureDetector(
+                onTap: (){
+                  widget._colorSelector.value = ColorSelector.three;
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                   _colorSelector == ColorSelector.three ? CircleAvatar(radius: 21,
+                      backgroundColor: AppColors.greenColor.withOpacity(0.4),
+                    ): Container(),
+                    CircleAvatar(radius: 16,
+                        backgroundColor: AppColors.primaryColor2),
+                  ],
+                ),
+              ),
+          ],
+        );
+      }
+    );
   }
 }

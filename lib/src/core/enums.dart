@@ -3,3 +3,9 @@ enum Environments {
   mock,
   test
 }
+
+enum ColorSelector {
+  one,
+  two,
+  three
+}
