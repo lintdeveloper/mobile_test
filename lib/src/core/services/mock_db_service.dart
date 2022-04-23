@@ -13,7 +13,7 @@ class MockDBService extends IMockDBService {
     List<Product> allProducts = [];
     var i = 0;
     while (i < _productsInDb.length) {
-      await Future.delayed(Duration(seconds: 1), () {
+      await Future.delayed(Duration(milliseconds: 100), () {
         allProducts.add(_productsInDb[i]);
       });
       i++;
@@ -24,45 +24,45 @@ class MockDBService extends IMockDBService {
 }
 
 List<Product> _productsInDb = [
-  Product(name: "Loom", subName: "Candel holders", mainImage: AppImages.decorOne, description: "Lorem Ipsum is simply "
+  Product(id: 1, name: "Loom", subName: "Candel holders", mainImage: AppImages.decorOne, description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5",
       images: [ AppImages.decorOne, AppImages.decorTwo, AppImages.decorThree], category: ProductCategory.decor ),
-  Product(name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
+  Product(id: 2, name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5", mainImage: AppImages.decorTwo,
       images: [ AppImages.decorOne, AppImages.decorTwo, AppImages.decorThree], category: ProductCategory.decor),
-  Product(name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
+  Product(id: 3, name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5", mainImage: AppImages.decorThree,
       images: [ AppImages.decorOne, AppImages.decorTwo, AppImages.decorThree], category: ProductCategory.decor),
 
-  Product(name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
+  Product(id: 4, name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5", mainImage: AppImages.furniOne,
       images: [ AppImages.furniOne, AppImages.furniTwo, AppImages.furniThree], category: ProductCategory.furniture),
-  Product(name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
+  Product(id: 5, name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5", mainImage: AppImages.furniTwo,
       images: [ AppImages.furniOne, AppImages.furniTwo, AppImages.furniThree], category: ProductCategory.furniture),
-  Product(name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
+  Product(id: 6, name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5", mainImage: AppImages.furniThree,
       images: [ AppImages.furniOne, AppImages.furniTwo, AppImages.furniThree], category: ProductCategory.furniture),
 
-  Product(name: "Loom", subName: "Candel holders", mainImage: AppImages.decorOne, description: "Lorem Ipsum is simply "
+  Product(id: 6, name: "Loom", subName: "Candel holders", mainImage: AppImages.decorOne, description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5",
       images: [ AppImages.decorOne, AppImages.decorTwo, AppImages.decorThree], category: ProductCategory.trending),
-  Product(name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
+  Product(id: 7, name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5", mainImage: AppImages.decorTwo,
       images: [ AppImages.decorOne, AppImages.decorTwo, AppImages.decorThree], category: ProductCategory.trending),
-  Product(name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
+  Product(id: 8, name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5", mainImage: AppImages.decorThree,
       images: [ AppImages.decorOne, AppImages.decorTwo, AppImages.decorThree], category: ProductCategory.trending),
-  Product(name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
+  Product(id: 9, name: "Loom", subName: "Candel holders", description: "Lorem Ipsum is simply "
       "dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
       "industry's standard dummy text ever since the 1500s", price: "1000", quantity: "5", mainImage: AppImages.furniOne,
       images: [ AppImages.furniOne, AppImages.furniTwo, AppImages.furniThree], category: ProductCategory.trending)

@@ -7,6 +7,7 @@ import 'package:mobile_test/src/view_models/store_view_model/store_view_model.da
 import 'package:mobile_test/src/views/product/product.dart';
 import 'package:mobile_test/utils/colors.dart';
 import 'package:mobile_test/utils/text_style.dart';
+import 'package:mobile_test/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class TrendingView extends StatefulWidget {

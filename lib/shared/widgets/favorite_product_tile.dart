@@ -42,8 +42,7 @@ class FavoriteProductTile extends StatelessWidget {
                   Text("${_product.description}", maxLines: 2,
                       overflow: TextOverflow.ellipsis, style: AppTextStyle.textSize12),
                   SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("${getCurrency("USD")}${_product.price}", style: AppTextStyle.textSize16.copyWith(
                           color: AppColors.primaryColor

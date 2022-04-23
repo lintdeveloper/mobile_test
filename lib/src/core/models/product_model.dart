@@ -1,10 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class Product extends Equatable {
-  Product({required this.name, required this.subName, required this.description,
+  Product({required this.id, required this.name, required this.subName, required this.description,
     this.isLike = false, required this.price, required this.quantity,
-    required this.images, required this.mainImage, required this.category});
+    required this.images, required this.mainImage, required this.category, this.orderQty});
 
+  final int id;
   final String name;
   final String subName;
   final String description;
@@ -14,10 +15,12 @@ class Product extends Equatable {
   final String price;
   final String quantity;
   final ProductCategory category;
+  int? orderQty = 1;
 
   @override
   List<Object?> get props => [
-    name, subName, description, images
+    id, name, subName, description,
+    images, price, quantity, category, orderQty
   ];
 }
 
