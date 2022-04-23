@@ -4,10 +4,9 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
-import 'package:vircap/src/core/core.dart';
-import 'package:vircap/utils/utils.dart';
 
 class ShowDialog {
+
   ShowDialog({required BuildContext context}) {
     showDialog(
         barrierDismissible: false,

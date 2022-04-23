@@ -20,7 +20,7 @@ class ShopBasketViewModel extends IShopBasketViewModel with ChangeNotifier {
 
   void addToFavorites(Product product) => favoriteProducts.add(product);
   void removeFromFavorite(Product product) {
-    favoriteProducts.add(product);
+    favoriteProducts.remove(product);
     notifyListeners();
   }
 }

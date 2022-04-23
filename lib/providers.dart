@@ -9,6 +9,5 @@ List<SingleChildWidget> getProviders() {
   return [
     ListenableProvider<StoreViewModel>(create: (_) => StoreViewModel()),
     ChangeNotifierProvider(create: (context) => ShopBasketViewModel()),
-
   ];
 }
