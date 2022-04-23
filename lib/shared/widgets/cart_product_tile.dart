@@ -21,7 +21,7 @@ class CartProductTile extends StatelessWidget {
     final numberFormat = NumberFormat.currency(decimalDigits: 0, symbol: '\$');
 
     return Container(
-      height: 180,
+      height: _size.height * 0.35,
       margin: EdgeInsets.only(left: _size.width * 0.08, top: _size.height * 0.02),
       child: Row(
         children: [
@@ -45,7 +45,6 @@ class CartProductTile extends StatelessWidget {
                           color: AppColors.darkBlackColor.withOpacity(0.9))),
                       IconButton(icon: Icon(Icons.close), color: AppColors.primaryColor,
                           onPressed: () {
-                        print("HI");
                             context.read<ShopBasketViewModel>().removeFromCart(_product);
                           })
                     ],
