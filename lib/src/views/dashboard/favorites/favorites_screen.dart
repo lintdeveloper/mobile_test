@@ -16,19 +16,22 @@ class FavoritesScreen extends StatefulWidget {
 class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
+    Size _size1 =  MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.secondaryColor,
+        toolbarHeight: _size1.height * 0.1,
+        title: Container(
+          margin: EdgeInsets.only(left: _size1.width * 0.06, top: _size1.height * 0.02),
+          child: Text("Favorites", style: AppTextStyle.textSize22.copyWith(
+              color: AppColors.darkBlackColor.withOpacity(0.8), letterSpacing: 1
+          )),
+        ),
+        automaticallyImplyLeading: false,
+      ),
       body: ResponsiveSafeArea(builder: (context, _size){
         return CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: Container(
-                margin: EdgeInsets.only(left: _size.width * 0.08,
-                    right: _size.width * 0.08, top: _size.width * 0.1),
-                child: Text("Favorites", style: AppTextStyle.textSize22.copyWith(
-                    color: AppColors.darkBlackColor.withOpacity(0.8), letterSpacing: 1
-                )),
-              ),
-            ),
             SliverToBoxAdapter(
               child: Consumer<ShopBasketViewModel>(
                 builder: (BuildContext context, ShopBasketViewModel shopBasket, Widget? child)  {
