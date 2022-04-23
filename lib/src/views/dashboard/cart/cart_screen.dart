@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_test/shared/shared.dart';
 import 'package:mobile_test/src/core/models/models.dart';
 import 'package:mobile_test/src/view_models/view_models.dart';
@@ -14,6 +15,9 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  final numberFormat = NumberFormat.currency(decimalDigits: 0, symbol: '\$');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,16 +34,24 @@ class _CartScreenState extends State<CartScreen> {
                         if (_products.isEmpty) {
                           return EmptyProductView(content: noProductInCartText);
                         };
-                        return ListView.separated(shrinkWrap: true,
-                            addAutomaticKeepAlives: true, addRepaintBoundaries: true,
-                            cacheExtent: 10, itemCount: _products.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            separatorBuilder: (context, index) => const Divider(thickness: 0.1,
-                                color: AppColors.primaryColor),
-                            itemBuilder: (BuildContext context, int index) {
-                              final _product = _products[index];
-                              return CartProductTile(product: _product, size: _size);
-                            });
+                        return Column(
+                          children: [
+                            ListView.separated(shrinkWrap: true,
+                                addAutomaticKeepAlives: true, addRepaintBoundaries: true,
+                                cacheExtent: 10, itemCount: _products.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                separatorBuilder: (context, index) => const Divider(thickness: 0.1,
+                                    color: AppColors.primaryColor),
+                                itemBuilder: (BuildContext context, int index) {
+                                  final _product = _products[index];
+                                  return CartProductTile(product: _product, size: _size);
+                                }),
+                            //White space
+                            Container(
+                              height: _size.height * 0.15,
+                            )
+                          ],
+                        );
                       }),
                 )
               ],
@@ -51,7 +63,8 @@ class _CartScreenState extends State<CartScreen> {
               };
               return Positioned(
                 bottom: _size.height * 0.00,
-                right: _size.width * 0.08,
+                right: _size.width * 0.1,
+                left: _size.width * 0.1,
                 child: Container(
                   child: Column(
                     children: [
@@ -65,7 +78,7 @@ class _CartScreenState extends State<CartScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("\$1000", style: AppTextStyle.textSize16.copyWith(color: AppColors.whiteColor)),
+                                Text("${numberFormat.format(shopBasket.totalInCart)}", style: AppTextStyle.textSize16.copyWith(color: AppColors.whiteColor)),
                                 Text("Place Order", style: AppTextStyle.textSize16.copyWith(color: AppColors.whiteColor)),
                               ],
                             ),
@@ -83,47 +96,7 @@ class _CartScreenState extends State<CartScreen> {
                       )
                     ],
                   ),
-                ),
-                // child: Container(height: 72,
-                //   padding: EdgeInsets.only(left: _size.width * 0.07, right:_size.width * 0.045),
-                //   decoration: BoxDecoration(
-                //     color: AppColors.darkBlackColor,
-                //     borderRadius: BorderRadius.circular(25.0),
-                //     boxShadow: [
-                //       BoxShadow(
-                //           blurRadius: 15,
-                //           offset: Offset(0, 10),
-                //           color: AppColors.blackColor.withOpacity(.05),
-                //           spreadRadius: -9 // changes position of shadow
-                //       ),
-                //     ],
-                //   ),
-                //   child: Row(
-                //     children: [
-                //       Text("Add to cart", style: AppTextStyle.textSize16.copyWith(
-                //           fontSize: 17
-                //       )),
-                //       SizedBox(width: _size.width * 0.082),
-                //       InkWell(
-                //         onTap: (){
-                //           // context.read<ShopBasketViewModel>().addToCart(_productData);
-                //           // Flushbar(
-                //           //   backgroundColor: Colors.green,
-                //           //   flushbarPosition: FlushbarPosition.TOP,
-                //           //   title: "Success",
-                //           //   message: "Product Added to cart",
-                //           //   duration: const Duration(seconds: 3),
-                //           // ).show(context);
-                //         },
-                //         child: CircleAvatar(
-                //           backgroundColor: AppColors.blackColor2,
-                //           child: Icon(Icons.add_shopping_cart,
-                //               color: AppColors.iceGrey.withOpacity(0.7)),
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // ),
+                )
               );
             })
           ],

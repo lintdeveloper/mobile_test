@@ -6,11 +6,13 @@ class ShopBasketViewModel extends IShopBasketViewModel with ChangeNotifier {
   Set<Product> productsInCart = {};
   Set<Product> favoriteProducts = {};
 
-  double get total {
+  double get totalInCart {
     return productsInCart.fold(0.0, (double currentTotal, Product nextProduct) {
-      return currentTotal + double.parse(nextProduct.price);
+      double _cost = double.parse(nextProduct.orderQty.toString()) * double.parse(nextProduct.price);
+      return currentTotal + _cost;
     });
   }
+
 
   void addToCart(Product product) => productsInCart.add(product);
   void removeFromCart(Product product) {
